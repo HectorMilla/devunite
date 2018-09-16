@@ -10,6 +10,12 @@ class Profiles extends Component {
     this.props.getProfiles();
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.profile.profile === null && this.props.profile.loading) {
+      this.props.history.push("/not-found");
+    }
+  }
+
   render() {
     const { profiles, loading } = this.props.profile;
     let profileItems;
