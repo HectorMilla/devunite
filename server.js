@@ -14,10 +14,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 // DB Config
-
 const db = require("./config/keys").mongoURI;
 
-//Connect to MongoDB
+// Connect to MongoDB
 mongoose
   .connect(
     db,
@@ -26,7 +25,7 @@ mongoose
   .then(() => console.log("MongoDB Connected"))
   .catch(err => console.log(err));
 
-// Passport MiddleWare
+// Passport middleware
 app.use(passport.initialize());
 
 // Passport Config
