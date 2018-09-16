@@ -21,6 +21,7 @@ class PostForm extends Component {
 
   onSubmit = e => {
     e.preventDefault();
+
     const { user } = this.props.auth;
 
     const newPost = {
@@ -66,15 +67,15 @@ class PostForm extends Component {
   }
 }
 
-PostForm.PropTypes = {
+PostForm.propTypes = {
   addPost: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
-  errors: state.errors,
-  auth: state.auth
+  auth: state.auth,
+  errors: state.errors
 });
 
 export default connect(

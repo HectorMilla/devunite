@@ -2,18 +2,12 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import Spinner from "../common/Spinner";
-import { getProfiles } from "../../actions/profileActions";
 import ProfileItem from "./ProfileItem";
+import { getProfiles } from "../../actions/profileActions";
 
 class Profiles extends Component {
   componentDidMount() {
     this.props.getProfiles();
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.profile.profile === null && this.props.profile.loading) {
-      this.props.history.push("/not-found");
-    }
   }
 
   render() {
@@ -23,12 +17,13 @@ class Profiles extends Component {
     if (profiles === null || loading) {
       profileItems = <Spinner />;
     } else {
+      console.log(profiles);
       if (profiles.length > 0) {
         profileItems = profiles.map(profile => (
           <ProfileItem key={profile._id} profile={profile} />
         ));
       } else {
-        profileItems = <h4>No Profiles found...</h4>;
+        profileItems = <h4>No profiles found...</h4>;
       }
     }
 

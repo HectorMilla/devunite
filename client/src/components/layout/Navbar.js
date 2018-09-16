@@ -6,11 +6,11 @@ import { logoutUser } from "../../actions/authActions";
 import { clearCurrentProfile } from "../../actions/profileActions";
 
 class Navbar extends Component {
-  onLogoutClick = e => {
+  onLogoutClick(e) {
     e.preventDefault();
     this.props.clearCurrentProfile();
     this.props.logoutUser();
-  };
+  }
 
   render() {
     const { isAuthenticated, user } = this.props.auth;
@@ -37,8 +37,8 @@ class Navbar extends Component {
               className="rounded-circle"
               src={user.avatar}
               alt={user.name}
-              style={{ width: "25px", marginRight: "59x" }}
-              title="You must have a Gravatar connected to your email to diplay an image"
+              style={{ width: "25px", marginRight: "5px" }}
+              title="You must have a Gravatar connected to your email to display an image"
             />{" "}
             Logout
           </a>
