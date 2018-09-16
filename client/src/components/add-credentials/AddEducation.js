@@ -20,17 +20,19 @@ class AddEducation extends Component {
       errors: {},
       disabled: false
     };
+
+    this.onChange = this.onChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
+    this.onCheck = this.onCheck.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.errors) {
-      this.setState({
-        errors: nextProps.errors
-      });
+      this.setState({ errors: nextProps.errors });
     }
   }
 
-  onSubmit = e => {
+  onSubmit(e) {
     e.preventDefault();
 
     const eduData = {
@@ -44,20 +46,18 @@ class AddEducation extends Component {
     };
 
     this.props.addEducation(eduData, this.props.history);
-  };
+  }
 
-  onChange = e => {
-    this.setState({
-      [e.target.name]: e.target.value
-    });
-  };
+  onChange(e) {
+    this.setState({ [e.target.name]: e.target.value });
+  }
 
-  onCheck = e => {
+  onCheck(e) {
     this.setState({
-      current: !this.state.current,
-      disabled: !this.state.disabled
+      disabled: !this.state.disabled,
+      current: !this.state.current
     });
-  };
+  }
 
   render() {
     const { errors } = this.state;
@@ -125,7 +125,7 @@ class AddEducation extends Component {
                     id="current"
                   />
                   <label htmlFor="current" className="form-check-label">
-                    Current School
+                    Current Job
                   </label>
                 </div>
                 <TextAreaFieldGroup
@@ -151,9 +151,9 @@ class AddEducation extends Component {
 }
 
 AddEducation.propTypes = {
+  addEducation: PropTypes.func.isRequired,
   profile: PropTypes.object.isRequired,
-  errors: PropTypes.object.isRequired,
-  addExperience: PropTypes.func.isRequired
+  errors: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
